@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Location Tracker Attempt Number One - Harit Talwar</title>
+    <meta charset="UTF-8">
+</head>
+<style>
+
+</style>
+
+<!-- here is the deleted line of code used to calculate longitude and latitude: console.log(getLatitudePosition, getLongitudePosition); (javascript)-->
+
+<body>
+    <button type="button" onclick="showLocation()">Allow my location to be accessed</button>
+    <p id="finalResult"></p>
+    <script type="text/javascript">
+        var destinationResult = document.getElementById("finalResult");
+
+        function showLocation() {
+            if (navigator.geolocation) {
+                destinationResult.innerHTML = "We are now looking for your location...";
+                navigator.geolocation.getCurrentPosition(getLocation, getError);
+            } else {
+                destinationResult.innerHTML = "The browser that you are currently using does not support geolocation. Please consider another method";
+            }
+        }
+
+        function getLocation(location) {
+            var getLatitudePosition = location.coords.latitude;
+            var getLongitudePosition = location.coords.longitude;
+            //var newXhr = new XMLHttpRequest();
+            console.log(getLatitudePosition, getLongitudePosition);
+            // newXhr.onreadystatechange = function() {
+            // if (this.readyState == 4 && this.status == 200) {
+            //   console.log(this.responseText);
+            //}
+            //}
+            //newXhr.open("GET", "");
+            //newXhr.send();
+
+        }
+
+        function getError(error) {
+            destinationResult.innerHTML = error.message;
+        }
+    </script>
+</body>
+
+</html>

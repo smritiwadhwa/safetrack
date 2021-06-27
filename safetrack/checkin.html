@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> SafeTrack Check In </title>
+    <link rel="stylesheet" href="./map.css">
+    <link rel="shortcut icon" href="logo.ico" />
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <script>
+function SubForm (){
+    $.ajax({
+        url:'https://api.apispreadsheets.com/data/14720/',
+        type:'post',
+        data:$("#myForm").serializeArray(),
+        success: function(){
+          alert("Form Data Submitted :) Reload to submit another response. ")
+        },
+        error: function(){
+          alert("There was an error :(")
+        }
+    });
+}
+</script>
+  </head>
+  <body onload="onload()" id = "body">
+    <div class = "header" id = "header">
+
+      <div class="title">
+          <a href = "map.html"><h1 id = "title"> safetrack </h1></a>
+      </div>
+      <div class="icon-bar">
+        <a class = "navicon"  href="checkin.html"><img id = "checkinbutton" src = "lightcheckinbutton.png" width = "40%"></img></a>
+        <a class = "navicon"  href="map.html"><img id = "mapButton" src = "mapbutton.png" width = "40%"></img></a>
+      </div>
+      <label class="switch">
+        <input type="checkbox" onclick="myFunction()">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <!-- FORM GOES HERE -->
+    <div id = "formbody" class = "formbody">
+      <h2 id = "title"> Check in </h2>
+      <form id="myForm">
+        <div class = "question">
+          <label>Phone number</label><br>
+            <input class = "textinput" name="phonenum" /><br><br>
+        </div>
+        <div class = "question">
+          <label>Are you vaccinated?</label><br>
+            <input class = "radioinput" type="radio" id="vaccine" name="vaccine" value="yes" /> yes <br>
+            <input class = "radioinput" type="radio" id="vaccine" name="vaccine" value="no" /> no<br>
+        </div>
+        <div class = "question">
+          <label>Are you masked?</label><br>
+            <input type="radio" id="mask" name="mask" value="yes" /> yes <br>
+            <input type="radio" id="mask" name="mask" value="no" /> no<br>
+        </div>
+        <div class = "question" id = "here">
+          <button type="button" id = "checkinsubmit1" onclick="showLocation()">Allow my location to be accessed</button>
+          <p id="finalResult"></p>
+        </div>
+        <div class = "question">
+          <label>Latitude</label><br>
+            <input class = "textinput"   placeholder = "Check browser settings if it doesn't work" id = "lat" name="lat" /><br><br>
+        </div>
+        <div class = "question">
+          <label>Longitude</label><br>
+            <input class = "textinput" id = "long" placeholder = "Check browser settings if it doesn't work" name="long" /><br>
+        </div>
+    </form>
+    <p class = "button"><button id = "checkinsubmit" onclick="SubForm()">Submit</button> </p>
+
+  </div>
+  </body>
+  <script src="map.js"></script>
+  <script>
+    var destinationResult = document.getElementById("finalResult");
+
+        function showLocation() {
+            if (navigator.geolocation) {
+                destinationResult.innerHTML = "We are now looking for your location...";
+                navigator.geolocation.getCurrentPosition(getLocation, getError);
+            } else {
+                destinationResult.innerHTML = "The browser that you are currently using does not support geolocation. Please consider another method";
+            }
+        }
+
+        function getLocation(location) {
+            var getLatitudePosition = location.coords.latitude;
+            var getLongitudePosition = location.coords.longitude;
+            document.getElementById("finalResult").innerHTML = "";
+            document.getElementById("lat").value = getLatitudePosition;
+            document.getElementById("long").value = getLongitudePosition;
+        }
+
+        function getError(error) {
+            destinationResult.innerHTML = error.message;
+        }
+  </script>
+  <footer id = "footer">
+    <h1 id = "footerText">  </h1>
+    <div class = "footerflex">
+      <div class = "harit">
+        <a target = "blank" href = "https://www.linkedin.com/in/harit-talwar-ab2865206/"><img class = "socials" src = "linkedin.png" width = "6%"></img></a>
+        <a target = "blank" href = 'https://github.com/harittalwar8'><img id = "github" class = "socials" src = "githublight.png" width = "6%"></img></a>
+      </div>
+      <div class = "smriti">
+        <a target = "blank" href = "www.linkedin.com/in/smriti-wadhwa-9522791b4">  <img class = "socials" src = "linkedin.png" width = "6%"></img></a>
+        <a target = "blank" href = "https://github.com/smritiwadhwa"> <img id = "github1" class = "socials" src = "githublight.png" width = "6%"></img></a>
+        </div>
+        <a href = "checkout.html">  <img class = "socials" src = "checkout.png" width = "25%"></img></a>
+
+      </div>
+  </footer>
+  </html>

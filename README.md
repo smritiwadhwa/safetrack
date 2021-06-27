@@ -6,8 +6,6 @@ What is SafeTrack?
 
 SafeTrack is a location tracking system that depicts the user’s immediate environment and alerts the user with detailed COVID-19 related information about other near-by users. If an individual is within 1 mile of the user, SafeTrack alerts them with the individual’s vaccination record, what type of vaccination they have received, how far along they are into their vaccinations, and whether or not they are wearing a mask. SafeTrack allows users to be aware of their surroundings and travel with caution. 
 
-Why choose SafeTrack? 
-
 How does SafeTrack work (with explanation of the different programs we have developed)?
 
 SafeTrack uses javascript code and the geolocation API in order to track a user’s latitude and longitude units (representing their location). With this location, we utilize excel programming to draft user input information and save it with their phone number as a personalized profile. Once two users utilize the website domain and sign up, we use more extensive js in order to calculate the distance between two individuals using their longitude and latitude values via the Haversine formula. Much of the planning of the algorithmic depiction of code and the user input was first developed using java and PHP, as reference code. This developed into one main web-dev interface, represented using HTML,CSS, and JS.
